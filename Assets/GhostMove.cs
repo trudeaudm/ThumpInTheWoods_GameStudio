@@ -14,14 +14,14 @@ public class GhostMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.LeftArrow)) {
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
             transform.Translate(-0.1f, 0, 0);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.Translate(0.1f, 0, 0);
         }
-        if (Input.GetKey(KeyCode.Space) && GPMeter.GetComponent<Slider>().value >= 1)
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Slider>().value >= 1)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
             transform.Translate(0, 0.05f, 0);
