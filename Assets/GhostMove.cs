@@ -21,13 +21,13 @@ public class GhostMove : MonoBehaviour {
         {
             transform.Translate(0.1f, 0, 0);
         }
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Slider>().value >= 1)
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Image>().fillAmount >= 0.01f)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
             transform.Translate(0, 0.05f, 0);
-            GPMeter.GetComponent<Slider>().value -= 1f;
+            GPMeter.GetComponent<Image>().fillAmount -= 0.02f;
         }
-        if (Input.GetKeyUp(KeyCode.Space) || GPMeter.GetComponent<Slider>().value < 1)
+        if (Input.GetKeyUp(KeyCode.Space) || GPMeter.GetComponent<Image>().fillAmount < 0.01)
         {
             GetComponent<Rigidbody2D>().gravityScale = 1;
         }
@@ -41,12 +41,12 @@ public class GhostMove : MonoBehaviour {
         {
             if (windCharge > 1)
             {
-                GPMeter.GetComponent<Slider>().value -= 50;
+                GPMeter.GetComponent<Image>().fillAmount -= 0.5f;
                 ghostlyWindParticles.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(windCharge));
             }
             else if (windCharge <= 1)
             {
-                GPMeter.GetComponent<Slider>().value -= 10;
+                GPMeter.GetComponent<Image>().fillAmount -= .1f;
                 ghostlyWindParticles.GetComponent<ParticleSystem>().Emit(5);
             }
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindParticles.transform.position;
@@ -59,7 +59,7 @@ public class GhostMove : MonoBehaviour {
 
         ParticleSystem.EmissionModule e = windLeavesParticles.GetComponent<ParticleSystem>().emission;
         e.rateOverTime = windCharge;
-        GPMeter.GetComponent<Slider>().value += 0.1f;
+        GPMeter.GetComponent<Image>().fillAmount += 0.01f;
     }
 
     public void OnMouseOver() {
@@ -72,7 +72,6 @@ public class GhostMove : MonoBehaviour {
     }
     public void OnParticleCollision (GameObject other)
     {
-        print("stuff");
         if (other.GetComponent<ObstacleScript>() != null) {
             Destroy(other);
         }
