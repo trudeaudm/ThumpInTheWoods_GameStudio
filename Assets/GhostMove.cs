@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GhostMove : MonoBehaviour {
 
@@ -14,6 +15,10 @@ public class GhostMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
+        if (transform.position.y <= -6) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
             transform.Translate(-0.1f, 0, 0);
         }
