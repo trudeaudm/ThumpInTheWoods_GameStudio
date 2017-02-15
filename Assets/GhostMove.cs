@@ -19,12 +19,19 @@ public class GhostMove : MonoBehaviour {
         if (transform.position.y <= -6) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            GetComponent<Animator>().SetBool("Walking", true);
             transform.Translate(-0.1f, 0, 0);
         }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
+            GetComponent<Animator>().SetBool("Walking", true);
             transform.Translate(0.1f, 0, 0);
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("Walking", false);
         }
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Image>().fillAmount >= 0.01f)
         {
