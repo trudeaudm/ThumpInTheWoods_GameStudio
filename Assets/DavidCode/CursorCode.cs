@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CursorCode : MonoBehaviour {
-    [SerializeField]private Transform particles;
+    [SerializeField]private Transform particles, cursor;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,5 +17,6 @@ public class CursorCode : MonoBehaviour {
         particlePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         particlePos.z = -2.0f;
         particles.position = particlePos;
+        cursor.position = particlePos;
 	}
 }
