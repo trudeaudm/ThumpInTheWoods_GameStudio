@@ -41,6 +41,7 @@ public class ParallaxScript : MonoBehaviour {
     void MakeANewBuddy(int rightorleft) {
         Vector3 newposition = new Vector3(transform.position.x + spriteWidth * rightorleft, transform.position.y, transform.position.z);
         Transform newBuddy = Instantiate(transform, newposition, transform.rotation) as Transform;
+        newBuddy.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         if (rightorleft > 0) {
             newBuddy.GetComponent<ParallaxScript>().hasleft = true;
         }
