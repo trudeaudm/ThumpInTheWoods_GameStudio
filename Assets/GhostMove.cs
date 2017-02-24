@@ -21,7 +21,7 @@ public class GhostMove : MonoBehaviour {
             speechBubble.GetComponentInChildren<TextMesh>().text = "End of Alpha!";
         }
         if (transform.position.y <= -6) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Reset();
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
@@ -94,5 +94,7 @@ public class GhostMove : MonoBehaviour {
             Destroy(other);
         }
     }
-
+    public void Reset() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
