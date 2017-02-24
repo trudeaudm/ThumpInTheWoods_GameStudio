@@ -6286,7 +6286,7 @@ Transform:
   m_GameObject: {fileID: 819412902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.44641978, y: 0.4381743, z: 0}
-  m_LocalScale: {x: 0.19753085, y: 0.3319503, z: 1}
+  m_LocalScale: {x: 0.009876543, y: 0.016597515, z: 1}
   m_Children: []
   m_Father: {fileID: 1118215793}
   m_RootOrder: 0
@@ -6309,7 +6309,7 @@ TextMesh:
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 6
+  m_FontSize: 90
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -6482,7 +6482,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1314924171
+  randomSeed: -1962356433
   InitialModule:
     serializedVersion: 3
     enabled: 1
