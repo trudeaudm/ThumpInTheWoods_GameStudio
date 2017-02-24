@@ -17,7 +17,7 @@ public class ArtifactScript : MonoBehaviour {
     public void OnMouseOver() {
         GameObject speechBubble = FindObjectOfType<GhostMove>().GetComponent<GhostMove>().speechBubble;
         speechBubble.SetActive(true);
-        speechBubble.GetComponentInChildren<TextMesh>().text = "That's a " + gameObject.name + "!";
+        speechBubble.GetComponentInChildren<TextMesh>().text = "That's a " + gameObject.name + "!\nLet's pick it up!";
     }
 
     public void OnMouseExit()

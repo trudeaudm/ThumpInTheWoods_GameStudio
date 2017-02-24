@@ -46,9 +46,15 @@ public class ObstacleScript : MonoBehaviour {
     {
         GameObject speechBubble = FindObjectOfType<GhostMove>().GetComponent<GhostMove>().speechBubble;
         speechBubble.SetActive(true);
-        speechBubble.GetComponentInChildren<TextMesh>().text = "That's a " + gameObject.name + "!";
+        if (gameObject.name.Contains("Wall") && !gameObject.name.Contains("Spinning"))
+        {
+            speechBubble.GetComponentInChildren<TextMesh>().text = "That's a Wall!\nThat could be moved\nwith a quick click!";
+        }
+        if (gameObject.name.Contains("Spinning Wall"))
+        {
+            speechBubble.GetComponentInChildren<TextMesh>().text = "That's a Spinning Wall!\nThat might need more\nof a charge to move it\nout of the way!";
+        }
     }
-
     public void OnMouseExit()
     {
         GameObject speechBubble = FindObjectOfType<GhostMove>().GetComponent<GhostMove>().speechBubble;

@@ -6415,11 +6415,13 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819412902}
-  m_Text: 'That''s a
+  m_Text: 'That''s a Spinning Wall!
 
-    placeholder
+    That might need more
 
-    platform!'
+    of a charge to move it
+
+    out of the way'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -9565,7 +9567,7 @@ TextMesh:
 
     Arrows to move
 
-    Use Ghost Powers to Move Obstacles:
+    Hover Mouse over certain objects to get Descriptions
 
     Click to use Ghostly Wind (Moves Walls)
 
@@ -13896,7 +13898,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -13920,4 +13922,4 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
