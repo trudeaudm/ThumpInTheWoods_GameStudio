@@ -55,13 +55,16 @@ public class ObstacleScript : MonoBehaviour {
         speechBubble.SetActive(false);
     }
     void OnParticleCollision(GameObject other) {
-        if (gameObject.name.Contains("Wall") && !gameObject.name.Contains("Spinning"))
+        if (gameObject.GetComponent<MeshRenderer>().isVisible)
         {
-            windtrigger = true;
-        }
-        if (gameObject.name == "Spinning Wall" && other.GetComponent<ParticleSystem>().particleCount > 6)
-        {
-            windtrigger = true;
+            if (gameObject.name.Contains("Wall") && !gameObject.name.Contains("Spinning"))
+            {
+                windtrigger = true;
+            }
+            if (gameObject.name == "Spinning Wall" && other.GetComponent<ParticleSystem>().particleCount > 6)
+            {
+                windtrigger = true;
+            }
         }
         other.GetComponent<ParticleSystem>().Clear();
     }
