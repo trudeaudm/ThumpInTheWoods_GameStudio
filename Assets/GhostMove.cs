@@ -16,6 +16,10 @@ public class GhostMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
+        if (GameObject.Find("Hat") == null) {
+            speechBubble.SetActive(true);
+            speechBubble.GetComponentInChildren<TextMesh>().text = "End of Alpha!";
+        }
         if (transform.position.y <= -6) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
@@ -54,11 +58,13 @@ public class GhostMove : MonoBehaviour {
             if (windCharge > 1)
             {
                 GPMeter.GetComponent<Image>().fillAmount -= 0.5f;
+                ghostlyWindParticles.GetComponent<ParticleSystem>().Clear();
                 ghostlyWindParticles.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(windCharge));
             }
             else if (windCharge <= 1)
             {
                 GPMeter.GetComponent<Image>().fillAmount -= .1f;
+                ghostlyWindParticles.GetComponent<ParticleSystem>().Clear();
                 ghostlyWindParticles.GetComponent<ParticleSystem>().Emit(5);
             }
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindParticles.transform.position;
