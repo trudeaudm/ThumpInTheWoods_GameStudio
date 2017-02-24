@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GhostMove : MonoBehaviour {
 
-    public float windCharge = 0;
+    public float windCharge = 5;
     public GameObject windLeavesParticles, GPMeter, ghostlyWindParticles, speechBubble;
 	// Use this for initialization
 	void Start () {
@@ -65,7 +65,7 @@ public class GhostMove : MonoBehaviour {
             difference.Normalize();
             float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             ghostlyWindParticles.transform.rotation = Quaternion.Euler(-rotz, 90, 0f);
-            windCharge = 0;
+            windCharge = 5;
             windLeavesParticles.SetActive(false);
         }
 

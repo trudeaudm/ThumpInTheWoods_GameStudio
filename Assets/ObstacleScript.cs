@@ -53,9 +53,10 @@ public class ObstacleScript : MonoBehaviour {
         {
             windtrigger = true;
         }
-        if (gameObject.name == "Spinning Wall")
+        if (gameObject.name == "Spinning Wall" && other.GetComponent<ParticleSystem>().particleCount > 6)
         {
             windtrigger = true;
         }
+        other.GetComponent<ParticleSystem>().Clear();
     }
 }
