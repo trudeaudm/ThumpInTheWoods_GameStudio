@@ -8,21 +8,43 @@ public class GhostMove : MonoBehaviour {
 
     public float windCharge = 5;
     public GameObject windLeavesParticles, GPMeter, ghostlyWindParticles, speechBubble;
+    [SerializeField] private Transform hatPos, shirtPos;
+    [SerializeField] private Sprite meSprite, walkingSprite;
+    [SerializeField] private SpriteRenderer myRend;
+    [SerializeField] private Animator myAnim;
+    private Rigidbody2D myRB;
+    private float camVertOffset = 4.0f;
+    [SerializeField]private GameObject GFX;
 	// Use this for initialization
 	void Start () {
-
-	}
+        myRB = GetComponent<Rigidbody2D>();
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + camVertOffset, -10);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
-        if (GameObject.Find("Hat") == null) {
+        //Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
+        if (FindObjectOfType<ArtifactScript>() == null) {
             speechBubble.SetActive(true);
-            speechBubble.GetComponentInChildren<TextMesh>().text = "End of Alpha!";
+            speechBubble.GetComponentInChildren<TextMesh>().text = "Congratulations! You have found the last artifact!";
         }
-        if (transform.position.y <= -6) {
+        if (transform.position.y <= -16) {
             Reset();
         }
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x + (10 * Input.GetAxis("Horizontal")), transform.position.y + camVertOffset, -10), 0.85f * Time.fixedDeltaTime);
+            myAnim.SetBool("Walking", true);
+            myRB.AddRelativeForce(transform.right * Input.GetAxis("Horizontal") * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
+            GFX.transform.localScale = new Vector3(Input.GetAxis("Horizontal") / Mathf.Abs(Input.GetAxis("Horizontal")), 1, 1);
+        }
+        else
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y + camVertOffset, -10), 0.85f * Time.fixedDeltaTime);
+            myAnim.SetBool("Walking", false);
+        }
+        /*
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             GetComponent<Animator>().SetBool("Walking", true);
@@ -37,6 +59,7 @@ public class GhostMove : MonoBehaviour {
         {
             GetComponent<Animator>().SetBool("Walking", false);
         }
+        */
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Image>().fillAmount >= 0.01f)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -50,7 +73,7 @@ public class GhostMove : MonoBehaviour {
         if (Input.GetMouseButton(0)) {
             windLeavesParticles.SetActive(true);
             ParticleSystem.MainModule m = windLeavesParticles.GetComponent<ParticleSystem>().main;
-            m.startLifetime = Mathf.Infinity;
+            m.startLifetime = 4.0f;
             windCharge += 0.1f;
         }
         if (Input.GetMouseButtonUp(0))
@@ -83,10 +106,15 @@ public class GhostMove : MonoBehaviour {
     public void OnMouseOver() {
         speechBubble.SetActive(true);
         speechBubble.GetComponentInChildren<TextMesh>().text = "It's me!";
+        myAnim.enabled = false;
+        myRend.sprite = meSprite;
+
     }
     public void OnMouseExit()
     {
         speechBubble.SetActive(false);
+        myRend.sprite = walkingSprite;
+        myAnim.enabled = true;
     }
     public void OnParticleCollision (GameObject other)
     {
@@ -96,5 +124,20 @@ public class GhostMove : MonoBehaviour {
     }
     public void Reset() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public Transform GetObjectPos(int pos)
+    {
+        if (pos == 1)
+        {
+            return hatPos;
+        }
+        else if (pos == 2)
+        {
+            return shirtPos;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
