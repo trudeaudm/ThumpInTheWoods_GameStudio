@@ -8,21 +8,41 @@ public class GhostMove : MonoBehaviour {
 
     public float windCharge = 5;
     public GameObject windLeavesParticles, GPMeter, ghostlyWindParticles, speechBubble;
+    [SerializeField] private Sprite meSprite, walkingSprite;
+    [SerializeField] private SpriteRenderer myRend;
+    [SerializeField] private Animator myAnim;
+    private Rigidbody2D myRB;
+    [SerializeField]private GameObject GFX;
 	// Use this for initialization
 	void Start () {
-
-	}
+        myRB = GetComponent<Rigidbody2D>();
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + 5.0f, -10);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
+        //Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
         if (GameObject.Find("Hat") == null) {
             speechBubble.SetActive(true);
             speechBubble.GetComponentInChildren<TextMesh>().text = "End of Alpha!";
         }
-        if (transform.position.y <= -6) {
+        if (transform.position.y <= -16) {
             Reset();
         }
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x + (10 * Input.GetAxis("Horizontal")), transform.position.y + 5.0f, -10), 0.85f * Time.fixedDeltaTime);
+            myAnim.SetBool("Walking", true);
+            myRB.AddRelativeForce(transform.right * Input.GetAxis("Horizontal") * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
+            GFX.transform.localScale = new Vector3(Input.GetAxis("Horizontal") / Mathf.Abs(Input.GetAxis("Horizontal")), 1, 1);
+        }
+        else
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y + 5.0f, -10), 0.85f * Time.fixedDeltaTime);
+            myAnim.SetBool("Walking", false);
+        }
+        /*
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             GetComponent<Animator>().SetBool("Walking", true);
@@ -37,6 +57,7 @@ public class GhostMove : MonoBehaviour {
         {
             GetComponent<Animator>().SetBool("Walking", false);
         }
+        */
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Image>().fillAmount >= 0.01f)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -83,10 +104,15 @@ public class GhostMove : MonoBehaviour {
     public void OnMouseOver() {
         speechBubble.SetActive(true);
         speechBubble.GetComponentInChildren<TextMesh>().text = "It's me!";
+        myAnim.enabled = false;
+        myRend.sprite = meSprite;
+
     }
     public void OnMouseExit()
     {
         speechBubble.SetActive(false);
+        myRend.sprite = walkingSprite;
+        myAnim.enabled = true;
     }
     public void OnParticleCollision (GameObject other)
     {
