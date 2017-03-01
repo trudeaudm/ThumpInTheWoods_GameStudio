@@ -13,12 +13,10 @@ public class ObstacleScript : MonoBehaviour {
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectOfType<GhostMove>().GetComponentsInChildren<EdgeCollider2D>()[1], true);
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectOfType<GhostMove>().GetComponentsInChildren<EdgeCollider2D>()[2], true);
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectOfType<GhostMove>().GetComponentsInChildren<EdgeCollider2D>()[3], true);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectsOfType<ObstacleScript>()[0].gameObject.GetComponent<BoxCollider2D>(), true);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectsOfType<ObstacleScript>()[1].gameObject.GetComponent<BoxCollider2D>(), true);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectsOfType<ObstacleScript>()[2].gameObject.GetComponent<BoxCollider2D>(), true);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectsOfType<ObstacleScript>()[3].gameObject.GetComponent<BoxCollider2D>(), true);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectsOfType<ObstacleScript>()[4].gameObject.GetComponent<BoxCollider2D>(), true);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectsOfType<ObstacleScript>()[5].gameObject.GetComponent<BoxCollider2D>(), true);
+        for (int x = 0; x < FindObjectsOfType<ObstacleScript>().Length; x++)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), FindObjectsOfType<ObstacleScript>()[x].gameObject.GetComponent<Collider2D>(), true);
+        }
         prevpos = transform.position;
     }
 	
@@ -61,7 +59,7 @@ public class ObstacleScript : MonoBehaviour {
         speechBubble.SetActive(false);
     }
     void OnParticleCollision(GameObject other) {
-        if (gameObject.GetComponent<MeshRenderer>().isVisible)
+        if (gameObject.GetComponent<Renderer>().isVisible)
         {
             if (gameObject.name.Contains("Wall") && !gameObject.name.Contains("Spinning"))
             {
