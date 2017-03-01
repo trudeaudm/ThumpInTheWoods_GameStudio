@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Para : MonoBehaviour {
+    [SerializeField] GameObject workLight;
     private Transform mainCam;
     [SerializeField]private float xRate, yRate;
     // Use this for initialization
     void Start () {
+        workLight.SetActive(false);
+        transform.localScale = new Vector3(1, 1, 1);
         mainCam = Camera.main.transform;
 	}
 	
