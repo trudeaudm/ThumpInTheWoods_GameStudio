@@ -6,32 +6,43 @@ using UnityEngine.SceneManagement;
 
 public class GhostMove : MonoBehaviour {
 
-    public float windCharge = 5;
-    public GameObject windLeavesParticles, GPMeter, ghostlyWindParticles, speechBubble;
+    private int spookAmt;
+    private float windCharge;
+    public GameObject windLeavesChargeParticles, ghostlyWindCastParticles, speechBubble;
+    private Image ghostlyPowerBar;
     [SerializeField] private Transform hatPos, shirtPos;
     [SerializeField] private Sprite meSprite, walkingSprite;
     [SerializeField] private SpriteRenderer myRend;
     [SerializeField] private Animator myAnim;
+    [SerializeField] private float floatCost, windCost, waterCost;
     private Rigidbody2D myRB;
+    public float ghostlyPower = 1.0f;
+    private bool doNaturalPowerGen = true; // if this is false it will stop natural power generation for the ghost
+    private bool powerShot; //if this is true the ghost needs to recover some power before abilities work.
     private float camVertOffset = 4.0f;
     [SerializeField]private GameObject GFX;
+
 	// Use this for initialization
 	void Start () {
+        ghostlyPowerBar = GameObject.Find("PowerBarSliderFill").GetComponent<Image>();
         myRB = GetComponent<Rigidbody2D>();
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + camVertOffset, -10);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //Camera.main.transform.position = new Vector3(transform.position.x + 8.5f, 0, -10);
+        //keep the ghostly power amount organized
+        ManageGhostlyPower();
+
         if (FindObjectOfType<ArtifactScript>() == null) {
             speechBubble.SetActive(true);
             speechBubble.GetComponentInChildren<TextMesh>().text = "Congratulations! You have found the last artifact!";
         }
         if (transform.position.y <= -16) {
-            Reset();
+            ReloadScene();
         }
 
+        //Movement controls
         if (Input.GetAxis("Horizontal") != 0)
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x + (10 * Input.GetAxis("Horizontal")), transform.position.y + camVertOffset, -10), 0.85f * Time.fixedDeltaTime);
@@ -44,73 +55,88 @@ public class GhostMove : MonoBehaviour {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y + camVertOffset, -10), 0.85f * Time.fixedDeltaTime);
             myAnim.SetBool("Walking", false);
         }
-        /*
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+
+
+        if (Input.GetKey(KeyCode.W) && !powerShot || Input.GetKey(KeyCode.Space) && !powerShot)
         {
-            GetComponent<Animator>().SetBool("Walking", true);
-            transform.Translate(-0.1f, 0, 0);
+            myRB.gravityScale = 0;
+            myRB.AddRelativeForce(transform.up * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
+            ModifyGhostlyPower(floatCost);
         }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+
+
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space))
         {
-            GetComponent<Animator>().SetBool("Walking", true);
-            transform.Translate(0.1f, 0, 0);
+            doNaturalPowerGen = true;
+            myRB.gravityScale = 1;
         }
-        else
-        {
-            GetComponent<Animator>().SetBool("Walking", false);
+
+
+        if (Input.GetMouseButton(0) && !powerShot) {
+            windLeavesChargeParticles.SetActive(true);
+            ParticleSystem.MainModule m = windLeavesChargeParticles.GetComponent<ParticleSystem>().main;
+            ParticleSystem.EmissionModule e = windLeavesChargeParticles.GetComponent<ParticleSystem>().emission;
+            e.rateOverTime = (windCharge/2.0f) + 1.0f;
+            windCharge += 0.2f;
+            ModifyGhostlyPower(windCost);
+            doNaturalPowerGen = false;
         }
-        */
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && GPMeter.GetComponent<Image>().fillAmount >= 0.01f)
-        {
-            GetComponent<Rigidbody2D>().gravityScale = 0;
-            transform.Translate(0, 0.05f, 0);
-            GPMeter.GetComponent<Image>().fillAmount -= 0.02f;
-        }
-        if (Input.GetKeyUp(KeyCode.Space) || GPMeter.GetComponent<Image>().fillAmount < 0.01)
-        {
-            GetComponent<Rigidbody2D>().gravityScale = 1;
-        }
-        if (Input.GetMouseButton(0)) {
-            windLeavesParticles.SetActive(true);
-            ParticleSystem.MainModule m = windLeavesParticles.GetComponent<ParticleSystem>().main;
-            m.startLifetime = 4.0f;
-            windCharge += 0.1f;
-        }
+        //if (ghostlyPower < 0.005f)
+        //{
+        //    MouseUp();
+        //}
+
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindCastParticles.transform.position;
+        difference.Normalize();
+        float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        ghostlyWindCastParticles.transform.rotation = Quaternion.Euler(-rotz, 90, 0f);
         if (Input.GetMouseButtonUp(0))
         {
-            if (windCharge > 1)
-            {
-                GPMeter.GetComponent<Image>().fillAmount -= 0.5f;
-                ghostlyWindParticles.GetComponent<ParticleSystem>().Clear();
-                ghostlyWindParticles.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(windCharge));
-            }
-            else if (windCharge <= 1)
-            {
-                GPMeter.GetComponent<Image>().fillAmount -= .1f;
-                ghostlyWindParticles.GetComponent<ParticleSystem>().Clear();
-                ghostlyWindParticles.GetComponent<ParticleSystem>().Emit(5);
-            }
-            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindParticles.transform.position;
-            difference.Normalize();
-            float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            ghostlyWindParticles.transform.rotation = Quaternion.Euler(-rotz, 90, 0f);
-            windCharge = 5;
-            windLeavesParticles.SetActive(false);
+            CastLeaves();
+            doNaturalPowerGen = true;
         }
 
-        ParticleSystem.EmissionModule e = windLeavesParticles.GetComponent<ParticleSystem>().emission;
-        e.rateOverTime = windCharge;
-        GPMeter.GetComponent<Image>().fillAmount += 0.01f;
-    }
 
-    public void OnMouseOver() {
+        
+        
+    }
+    void CastLeaves()
+    {
+        if (windCharge > 1)
+        {
+            ParticleSystem.MainModule m = ghostlyWindCastParticles.GetComponent<ParticleSystem>().main;
+            m.startLifetime = 5.5f;
+            ghostlyWindCastParticles.GetComponent<ParticleSystem>().Emit(Mathf.RoundToInt(windCharge));
+        }
+        else if (windCharge <= 1)
+        {
+            ParticleSystem.MainModule m = ghostlyWindCastParticles.GetComponent<ParticleSystem>().main;
+            m.startLifetime = 0.3f;
+
+            ghostlyWindCastParticles.GetComponent<ParticleSystem>().Emit(6);
+            ModifyGhostlyPower(-10.0f);
+        }
+
+
+        windCharge = 0;
+        StartCoroutine("ShutOffCharge");
+    }
+    IEnumerator ShutOffCharge()
+    {
+        ParticleSystem.EmissionModule e = windLeavesChargeParticles.GetComponent<ParticleSystem>().emission;
+        e.rateOverTime = 0;
+        yield return new WaitForSecondsRealtime(6.0f);
+        windLeavesChargeParticles.SetActive(false);
+        yield return null;
+    }
+    void OnMouseOver() {
         speechBubble.SetActive(true);
         speechBubble.GetComponentInChildren<TextMesh>().text = "It's me!";
         myAnim.enabled = false;
         myRend.sprite = meSprite;
 
     }
-    public void OnMouseExit()
+    void OnMouseExit()
     {
         speechBubble.SetActive(false);
         myRend.sprite = walkingSprite;
@@ -119,10 +145,10 @@ public class GhostMove : MonoBehaviour {
     public void OnParticleCollision (GameObject other)
     {
         if (other.GetComponent<ObstacleScript>() != null) {
-            Destroy(other);
+           // Destroy(other);
         }
     }
-    public void Reset() {
+    public void ReloadScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public Transform GetObjectPos(int pos)
@@ -140,4 +166,30 @@ public class GhostMove : MonoBehaviour {
             return null;
         }
     }
+    void ManageGhostlyPower()
+    {
+        if (ghostlyPower < 1.0f)
+        {
+            if (doNaturalPowerGen)
+            {
+                ghostlyPower += 0.1f * Time.fixedDeltaTime;
+            }
+        }
+        if (ghostlyPower > 0.2f)
+        {
+            powerShot = false;
+        }
+        if (ghostlyPower < 0.0f)
+        {
+            ghostlyPower = 0.0f;
+            powerShot = true;
+            myRB.gravityScale = 1;
+        }
+        ghostlyPowerBar.fillAmount = ghostlyPower;
+    }
+    void ModifyGhostlyPower(float amount)
+    {
+        ghostlyPower = ghostlyPower + (amount * Time.fixedDeltaTime);
+    }
+
 }

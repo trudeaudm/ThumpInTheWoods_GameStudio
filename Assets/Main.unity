@@ -323,11 +323,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 53.21
+      value: 52.13
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.35
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalPosition.z
@@ -355,15 +355,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 4.9474454
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 4.878955
       objectReference: {fileID: 0}
     - target: {fileID: 1646659691464496, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50429759702076686, guid: ed7bee36709939f4e943af5ffd365102,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23850873032323296, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
@@ -1071,7 +1076,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 521470733
+  randomSeed: -730596700
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1115,7 +1120,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 1
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1502,7 +1507,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 30
+      scalar: 50
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3803,7 +3808,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1157232911
+  randomSeed: 1326258992
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7831,7 +7836,17 @@ Prefab:
       propertyPath: InitialModule.startSize.maxCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4290168237237094, guid: f6a0f3f6bf3726c42956bceea477e647, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600141074353842, guid: f6a0f3f6bf3726c42956bceea477e647, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 199843121606646936, guid: f6a0f3f6bf3726c42956bceea477e647, type: 2}
+    - {fileID: 198973965314717864, guid: f6a0f3f6bf3726c42956bceea477e647, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f6a0f3f6bf3726c42956bceea477e647, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &680558893
@@ -8564,7 +8579,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646659691464496, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50429759702076686, guid: ed7bee36709939f4e943af5ffd365102,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23850873032323296, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
@@ -8697,7 +8717,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 811212342
+  randomSeed: 1664033121
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9866,7 +9886,7 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 0
+    enabled: 1
     multiplier: 1
   ClampVelocityModule:
     enabled: 0
@@ -11490,11 +11510,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &959439551 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1879981863139870, guid: f6a0f3f6bf3726c42956bceea477e647,
-    type: 2}
-  m_PrefabInternal: {fileID: 576394863}
 --- !u!1 &995363721 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1820871232422292, guid: 7cd1063469f3b2b4b8525466181c1503,
@@ -11865,12 +11880,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1076474194
+  randomSeed: -1545724749
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 4
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14667,11 +14682,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 44.23
+      value: 42.08
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.1
+      value: 6.97
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14687,11 +14702,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.22988273
+      value: 0.3181307
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9732183
+      value: 0.94804686
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_RootOrder
@@ -14711,11 +14726,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4915666707669820, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 26.580002
+      value: 37.100002
       objectReference: {fileID: 0}
     - target: {fileID: 1646659691464496, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50429759702076686, guid: ed7bee36709939f4e943af5ffd365102,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23850873032323296, guid: ed7bee36709939f4e943af5ffd365102, type: 2}
@@ -14914,7 +14934,7 @@ Transform:
   m_GameObject: {fileID: 1117682401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -15, y: -15, z: 1}
+  m_LocalScale: {x: -18, y: -18, z: 1}
   m_Children:
   - {fileID: 217052073}
   m_Father: {fileID: 1244988921}
@@ -15525,10 +15545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ed221990bc92b4292396ccfe252f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windCharge: 0
-  windLeavesParticles: {fileID: 1413698878}
-  GPMeter: {fileID: 959439551}
-  ghostlyWindParticles: {fileID: 909890711}
+  windLeavesChargeParticles: {fileID: 1413698878}
+  ghostlyWindCastParticles: {fileID: 909890711}
   speechBubble: {fileID: 1132111417}
   hatPos: {fileID: 1555023858}
   shirtPos: {fileID: 1244691938}
@@ -15536,6 +15554,10 @@ MonoBehaviour:
   walkingSprite: {fileID: 21300000, guid: fcc50fb0e5135c043bc624a216c760c5, type: 3}
   myRend: {fileID: 1031841086}
   myAnim: {fileID: 1031841085}
+  floatCost: -0.5
+  windCost: -0.2
+  waterCost: -1
+  ghostlyPower: 1
   GFX: {fileID: 1031841084}
 --- !u!4 &1244988921
 Transform:
@@ -15662,7 +15684,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1240422255
+  randomSeed: -1337722912
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19105,7 +19127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1413698879
 ParticleSystemRenderer:
   serializedVersion: 2
@@ -19213,12 +19235,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1934547848
+  randomSeed: -67603759
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19257,7 +19279,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 3
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19632,8 +19654,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 3
     enabled: 1
-    type: 0
-    radius: 1
+    type: 10
+    radius: 3
     angle: 0
     length: 5
     boxX: 1
@@ -19656,7 +19678,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 10
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -20382,8 +20404,8 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 0
-    multiplier: 1
+    enabled: 1
+    multiplier: 0.5
   ClampVelocityModule:
     enabled: 0
     x:
@@ -21949,7 +21971,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 31710198
+  randomSeed: 1442433739
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -24564,6 +24586,24 @@ Transform:
   m_Father: {fileID: 909890714}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1551154151 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1551931841396972, guid: f6a0f3f6bf3726c42956bceea477e647,
+    type: 2}
+  m_PrefabInternal: {fileID: 576394863}
+--- !u!182 &1551154155
+WindZone:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1551154151}
+  m_Enabled: 1
+  m_Mode: 1
+  m_Radius: 10
+  m_WindMain: 25
+  m_WindTurbulence: 10
+  m_WindPulseMagnitude: 1
+  m_WindPulseFrequency: 0.01
 --- !u!1 &1555023857
 GameObject:
   m_ObjectHideFlags: 0
@@ -25989,7 +26029,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1944330027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 347107288}
@@ -26003,7 +26043,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1944330027}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 10
   simulationSpeed: 1
   looping: 1
   prewarm: 0
@@ -26051,12 +26091,12 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2030754710
+  randomSeed: -275067536
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 8
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -26227,7 +26267,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 4
     startSize:
-      scalar: 1
+      scalar: 1.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -26245,7 +26285,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.7
+          value: 0.72727275
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -26425,7 +26465,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -26470,8 +26510,8 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 3
     enabled: 1
-    type: 5
-    radius: 1
+    type: 10
+    radius: 30
     angle: 25
     length: 5
     boxX: 50
@@ -26494,7 +26534,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 2
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -27256,7 +27296,7 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 0
+    enabled: 1
     multiplier: 1
   ClampVelocityModule:
     enabled: 0

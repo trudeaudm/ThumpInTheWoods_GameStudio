@@ -59,7 +59,7 @@ public class ObstacleScript : MonoBehaviour {
         speechBubble.SetActive(false);
     }
     void OnParticleCollision(GameObject other) {
-        if (gameObject.GetComponent<Renderer>().isVisible)
+        if (gameObject.GetComponent<Renderer>().isVisible && other.name == "Ghostly Wind")
         {
             if (gameObject.name.Contains("Wall") && !gameObject.name.Contains("Spinning"))
             {
