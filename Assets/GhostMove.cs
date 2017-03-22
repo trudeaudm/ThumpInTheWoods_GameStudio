@@ -17,27 +17,41 @@ public class GhostMove : MonoBehaviour {
     [SerializeField] private float floatCost, windCost, waterCost;
     private Rigidbody2D myRB;
     public float ghostlyPower = 1.0f;
+    public float powerGenRate;
     private bool doNaturalPowerGen = true; // if this is false it will stop natural power generation for the ghost
     private bool powerShot; //if this is true the ghost needs to recover some power before abilities work.
     private float camVertOffset = 4.0f;
     [SerializeField]private GameObject GFX;
-
-	// Use this for initialization
-	void Start () {
+    private Text speechBubbleTextMain;
+    private GameObject speechBubbleTextParent;
+    private RecallPosition RcP;
+    // Use this for initialization
+    void Awake () {
+        RcP = GetComponent<RecallPosition>();
+        speechBubbleTextMain = GameObject.FindGameObjectWithTag("SpeechBubbleText").GetComponent<Text>();
+        speechBubbleTextParent = speechBubbleTextMain.transform.parent.gameObject;
+        speechBubbleTextParent.SetActive(false);
         ghostlyPowerBar = GameObject.Find("PowerBarSliderFill").GetComponent<Image>();
         myRB = GetComponent<Rigidbody2D>();
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y + camVertOffset, -10);
     }
-	
+	public Text GetSpeechBubbleText()
+    {
+        return speechBubbleTextMain;
+    }
+    public GameObject GetSpeechBubbleParent()
+    {
+        return speechBubbleTextParent;
+    }
 	// Update is called once per frame
 	void Update () {
         //keep the ghostly power amount organized
         ManageGhostlyPower();
 
-        if (FindObjectOfType<ArtifactScript>() == null) {
+        /*if (FindObjectOfType<ArtifactScript>() == null) {
             speechBubble.SetActive(true);
             speechBubble.GetComponentInChildren<TextMesh>().text = "Congratulations! You have found the last artifact!";
-        }
+        }*/
         if (transform.position.y <= -16) {
             ReloadScene();
         }
@@ -45,14 +59,14 @@ public class GhostMove : MonoBehaviour {
         //Movement controls
         if (Input.GetAxis("Horizontal") != 0)
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x + (10 * Input.GetAxis("Horizontal")), transform.position.y + camVertOffset, -10), 0.85f * Time.fixedDeltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x + (10 * Input.GetAxis("Horizontal")), transform.position.y + camVertOffset, -10), 0.75f * Time.fixedDeltaTime);
             myAnim.SetBool("Walking", true);
             myRB.AddRelativeForce(transform.right * Input.GetAxis("Horizontal") * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
             GFX.transform.localScale = new Vector3(Input.GetAxis("Horizontal") / Mathf.Abs(Input.GetAxis("Horizontal")), 1, 1);
         }
         else
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y + camVertOffset, -10), 0.85f * Time.fixedDeltaTime);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y + camVertOffset, -10), 0.75f * Time.fixedDeltaTime);
             myAnim.SetBool("Walking", false);
         }
 
@@ -61,7 +75,7 @@ public class GhostMove : MonoBehaviour {
         {
             myRB.gravityScale = 0;
             myRB.AddRelativeForce(transform.up * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
-            ModifyGhostlyPower(floatCost);
+            ChangeGhostlyPower(floatCost);
         }
 
 
@@ -78,7 +92,7 @@ public class GhostMove : MonoBehaviour {
             ParticleSystem.EmissionModule e = windLeavesChargeParticles.GetComponent<ParticleSystem>().emission;
             e.rateOverTime = (windCharge/2.0f) + 1.0f;
             windCharge += 0.2f;
-            ModifyGhostlyPower(windCost);
+            ChangeGhostlyPower(windCost);
             doNaturalPowerGen = false;
         }
         //if (ghostlyPower < 0.005f)
@@ -114,7 +128,7 @@ public class GhostMove : MonoBehaviour {
             m.startLifetime = 0.3f;
 
             ghostlyWindCastParticles.GetComponent<ParticleSystem>().Emit(6);
-            ModifyGhostlyPower(-10.0f);
+            StartCoroutine(ModifyGhostlyPower(false, 0.1f, 0.01f));
         }
 
 
@@ -130,15 +144,11 @@ public class GhostMove : MonoBehaviour {
         yield return null;
     }
     void OnMouseOver() {
-        speechBubble.SetActive(true);
-        speechBubble.GetComponentInChildren<TextMesh>().text = "It's me!";
         myAnim.enabled = false;
         myRend.sprite = meSprite;
-
     }
     void OnMouseExit()
     {
-        speechBubble.SetActive(false);
         myRend.sprite = walkingSprite;
         myAnim.enabled = true;
     }
@@ -172,7 +182,7 @@ public class GhostMove : MonoBehaviour {
         {
             if (doNaturalPowerGen)
             {
-                ghostlyPower += 0.1f * Time.fixedDeltaTime;
+                ghostlyPower += powerGenRate * Time.fixedDeltaTime;
             }
         }
         if (ghostlyPower > 0.2f)
@@ -186,10 +196,41 @@ public class GhostMove : MonoBehaviour {
             myRB.gravityScale = 1;
         }
         ghostlyPowerBar.fillAmount = ghostlyPower;
+        if (ghostlyPower > 1)
+        {
+            ghostlyPower = 1;
+        }
     }
-    void ModifyGhostlyPower(float amount)
+    public IEnumerator ModifyGhostlyPower(bool increase, float amount, float rate)
     {
-        ghostlyPower = ghostlyPower + (amount * Time.fixedDeltaTime);
+        if (increase)
+        {
+            while (amount > 0)
+            {
+                amount = amount - rate;
+                ghostlyPower = ghostlyPower + rate;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (amount > 0)
+            {
+                amount = amount - rate;
+                ghostlyPower = ghostlyPower - rate;
+                yield return null;
+            }
+        }
     }
+    void ChangeGhostlyPower(float amt)
+    {
+        ghostlyPower = ghostlyPower + (amt * Time.fixedDeltaTime);
+    }
+    public void SetGhostPower(float val)
+    {
+        ghostlyPower = val;
+    }
+
+    
 
 }
