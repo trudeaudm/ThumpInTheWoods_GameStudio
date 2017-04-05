@@ -231,6 +231,19 @@ public class GhostMove : MonoBehaviour {
         ghostlyPower = val;
     }
 
-    
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.GetComponent<TipSensorScript>() != null) {
+            col.gameObject.GetComponent<TipSensorScript>().inTrigger = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.GetComponent<TipSensorScript>() != null)
+        {
+            col.gameObject.GetComponent<TipSensorScript>().inTrigger = false;
+        }
+    }
 
 }
