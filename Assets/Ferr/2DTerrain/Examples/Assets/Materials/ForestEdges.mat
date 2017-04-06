@@ -24,13 +24,13 @@ Material:
     m_Floats:
     - first:
         name: _PositionScale
-      second: 3.1
+      second: 1
     - first:
         name: _WaveSizeX
-      second: 0.1
+      second: 0.01
     - first:
         name: _WaveSizeY
-      second: 0
+      second: 0.05
     - first:
         name: _WaveSpeed
       second: 1

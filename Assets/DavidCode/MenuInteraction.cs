@@ -10,6 +10,7 @@ public class MenuInteraction : MonoBehaviour {
     [SerializeField]
     private MenuInteraction twinInteraction;
     private IEnumerator coroutineOpen, coroutineClose;
+    public bool isStartGame;
 
     void Start()
     {
@@ -54,12 +55,22 @@ public class MenuInteraction : MonoBehaviour {
             twinInteraction.Close();
         }
     }
+    void OnMouseDown()
+    {
+        if (isStartGame)
+        {
+            StartGame();
+        }
+        else
+        {
+            QuitGame();
+        }
+    }
     private IEnumerator OpenEffect()
     {
         
             while (objectToMove.rotation != activePosition.rotation || objectToMove.position != activePosition.position)
             {
-            Debug.Log("open");
             objectToMove.position = Vector2.Lerp(objectToMove.position, activePosition.position, moveRate);
                 objectToMove.rotation = Quaternion.Lerp(objectToMove.rotation, activePosition.rotation, moveRate);
                 yield return null;
@@ -100,5 +111,13 @@ public class MenuInteraction : MonoBehaviour {
             StopCoroutine(coroutineOpen);
         }
         StartCoroutine(coroutineClose);
+    }
+    void QuitGame()
+    {
+        Application.Quit();
+    }
+    void StartGame()
+    {
+        Application.LoadLevel("Main");
     }
 }

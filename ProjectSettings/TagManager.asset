@@ -7,6 +7,8 @@ TagManager:
   - BaseTerrain
   - SpeechBubbleText
   - Wet
+  - Cursor
+  - Wind
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Obstacle
   - Player
   - Info
-  - 
+  - ObstacleInteract
   - 
   - 
   - 
@@ -41,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Back
+    uniqueID: 4094026405
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

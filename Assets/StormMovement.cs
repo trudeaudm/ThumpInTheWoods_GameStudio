@@ -9,22 +9,30 @@ public class StormMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         lSpawner = FindObjectOfType<LightningSpawner>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-	}
+
+        GameObject playOb = GameObject.FindGameObjectWithTag("Player");
+        if (playOb)
+        {
+            player = playOb.transform;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        float offset = player.position.x - transform.position.x;
-        float xOffset = Mathf.Abs(offset);
-        if (xOffset > maxOffsetX)
+        if (player)
         {
-            Vector2 newPos = transform.position;
-            newPos.x = Mathf.Lerp(newPos.x, newPos.x + 1.0f, 2 * Time.fixedDeltaTime);
-            transform.position = newPos;
+            float offset = player.position.x - transform.position.x;
+            float xOffset = Mathf.Abs(offset);
+            if (xOffset > maxOffsetX)
+            {
+                Vector2 newPos = transform.position;
+                newPos.x = Mathf.Lerp(newPos.x, newPos.x + 1.0f, 2 * Time.fixedDeltaTime);
+                transform.position = newPos;
+            }
+            Vector2 newPosY = transform.position;
+            newPosY.y = Mathf.Lerp(newPosY.y, player.transform.position.y + offsetY, 2 * Time.fixedDeltaTime);
+            transform.position = newPosY;
         }
-        Vector2 newPosY = transform.position;
-        newPosY.y = Mathf.Lerp(newPosY.y, player.transform.position.y + offsetY, 2 * Time.fixedDeltaTime);
-        transform.position = newPosY;
 
     }
     void OnParticleCollision(GameObject other)

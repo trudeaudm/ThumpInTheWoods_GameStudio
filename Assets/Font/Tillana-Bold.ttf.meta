@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 38943db1dc57b214db0d887faac14c9c
+timeCreated: 1490643313
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tillana
+  fontNames:
+  - Tillana
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1508d42d4c958494fa57c98c95d9a310, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -13,6 +13,10 @@ public class ArtifactScript : MonoBehaviour {
             GetComponent<Rigidbody2D>().simulated = false;
             transform.position = GM.GetObjectPos(itemType).position;
             transform.parent = GM.GetObjectPos(itemType);
+            SpriteRenderer SR = GetComponent<SpriteRenderer>();
+            Color transColor = SR.color;
+            transColor.a = 0.5f;
+            SR.color = transColor;
             Destroy(this);
         }
     }

@@ -8,7 +8,12 @@ public class SpiritPower : MonoBehaviour {
     private GhostMove player;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<GhostMove>();
+        GameObject playOb = GameObject.FindGameObjectWithTag("Player");
+        if (playOb)
+        {
+            player = playOb.GetComponent<GhostMove>();
+        }
+
     }
     public void OnParticleCollision(GameObject other)
     {

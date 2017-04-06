@@ -152,12 +152,6 @@ public class GhostMove : MonoBehaviour {
         myRend.sprite = walkingSprite;
         myAnim.enabled = true;
     }
-    public void OnParticleCollision (GameObject other)
-    {
-        if (other.GetComponent<ObstacleScript>() != null) {
-           // Destroy(other);
-        }
-    }
     public void ReloadScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

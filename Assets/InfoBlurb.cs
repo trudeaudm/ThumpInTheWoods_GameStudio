@@ -9,9 +9,13 @@ public class InfoBlurb : MonoBehaviour {
     private GameObject speechParent;
     void Start()
     {
-        GhostMove GM = GameObject.FindGameObjectWithTag("Player").GetComponent<GhostMove>();
-        speechBub = GM.GetSpeechBubbleText();
-        speechParent = GM.GetSpeechBubbleParent();
+        GameObject playOb = GameObject.FindGameObjectWithTag("Player");
+        if (playOb)
+        {
+            GhostMove GM = playOb.GetComponent<GhostMove>();
+            speechBub = GM.GetSpeechBubbleText();
+            speechParent = GM.GetSpeechBubbleParent();
+        }
     }
     public void OnMouseOver()
     {

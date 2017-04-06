@@ -25,7 +25,6 @@ public class RecallPosition : MonoBehaviour {
         {
             if (positions.Count() > 0 && Vector2.Distance(positions.Last(), transform.position) > distanceBetweenPositions)
             {
-                Debug.Log("newP");
                 positions.Add(transform.position);
             }
             else if (positions.Count() == 0)

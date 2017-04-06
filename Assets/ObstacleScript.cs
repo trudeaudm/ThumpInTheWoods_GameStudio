@@ -52,6 +52,6 @@ public class ObstacleScript : MonoBehaviour {
                 windtrigger = true;
             }
         }
-        other.GetComponent<ParticleSystem>().Clear();
+        //other.GetComponent<ParticleSystem>().Clear();
     }
 }
