@@ -6,39 +6,80 @@ using UnityEngine.UI;
 public class TipSensorScript : MonoBehaviour {
 
     public float timer;
-    public bool inTrigger;
-    public GameObject bubble;
+    private GameObject bubble;
     [SerializeField]
     public string tip;
+    public float duration;
+    private Coroutine messageTimerRoutine;
+    public GameObject indicatorOb;
+    public float indicatorBlinkRate;
+    private bool messageOn;
     // Use this for initialization
     void Awake() {
         bubble = GameObject.FindGameObjectWithTag("SpeechBubbleText");
-    }
-	void Start () {
-        timer = 0;
-        inTrigger = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (inTrigger)
+        if (indicatorOb)
         {
-            timer += Time.deltaTime;
-            if (timer > 5)
-            {
-                bubble.transform.parent.gameObject.SetActive(true);
-                bubble.GetComponent<Text>().text = tip;
-            }
+            indicatorOb.SetActive(false);
         }
-        else
+    }
+    void SetMessage()
+    {
+        messageOn = true;
+        if (duration > 0)
         {
-            timer = 0;
-            if (bubble != null)
-            {
-                bubble.transform.parent.gameObject.SetActive(false);
-            }
+            StartCoroutine(EndMessageTimer());
+        }
+        if (indicatorOb)
+        {
+            StartCoroutine(BlinkIndicator());
+        }
+    
+        bubble.transform.parent.gameObject.SetActive(true);
+        bubble.GetComponent<Text>().text = tip;
+    }
+    void EndMessage(){
+        messageOn = false;
+        if (bubble != null && bubble.GetComponent<Text>().text == tip)
+        {
+            bubble.transform.parent.gameObject.SetActive(false);
+        }
+
+    }
+    IEnumerator EndMessageTimer()
+    {
+        yield return new WaitForSecondsRealtime(duration);
+        EndMessage();
+    }
+    IEnumerator MessageTimer()
+    {
+        yield return new WaitForSecondsRealtime(timer);
+        SetMessage();
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            messageTimerRoutine = StartCoroutine(MessageTimer());
         }
     }
 
-    
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            StopCoroutine(messageTimerRoutine);
+            EndMessage();
+        }
+    }
+    IEnumerator BlinkIndicator()
+    {
+        while (messageOn)
+        {
+            indicatorOb.SetActive(true);
+            yield return new WaitForSecondsRealtime(indicatorBlinkRate);
+            indicatorOb.SetActive(false);
+            yield return new WaitForSecondsRealtime(indicatorBlinkRate);
+        }
+    }
+
 }

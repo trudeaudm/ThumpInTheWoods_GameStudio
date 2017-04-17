@@ -12,9 +12,9 @@ public class FireflyBehavior : MonoBehaviour {
 
     private Transform parent;
     private Vector2 vel;
-
-	// Use this for initialization
-	void Start () {
+    void Start()
+    {
+        GameObject playOb = GameObject.FindGameObjectWithTag("Player");
         myPs = GetComponent<ParticleSystem>();
         float flashRate = Random.Range(flashRateMin, flashRateMax);
         Invoke("Flash", flashRate);
@@ -52,4 +52,5 @@ public class FireflyBehavior : MonoBehaviour {
     {
         transform.Translate(vel * Time.fixedDeltaTime);
     }
+
 }

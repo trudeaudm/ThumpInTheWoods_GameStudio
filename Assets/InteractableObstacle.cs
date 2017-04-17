@@ -14,6 +14,7 @@ public class InteractableObstacle : MonoBehaviour {
     void Start()
     {
         curs = GameObject.FindGameObjectWithTag("Cursor").transform;
+        moveToPos.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void Activate(GameObject other)

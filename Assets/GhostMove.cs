@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GhostMove : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class GhostMove : MonoBehaviour {
     private Text speechBubbleTextMain;
     private GameObject speechBubbleTextParent;
     private RecallPosition RcP;
+    public float ghostmoveForce;
     // Use this for initialization
     void Awake () {
         RcP = GetComponent<RecallPosition>();
@@ -61,7 +63,7 @@ public class GhostMove : MonoBehaviour {
         {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x + (10 * Input.GetAxis("Horizontal")), transform.position.y + camVertOffset, -10), 0.75f * Time.fixedDeltaTime);
             myAnim.SetBool("Walking", true);
-            myRB.AddRelativeForce(transform.right * Input.GetAxis("Horizontal") * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
+            myRB.AddRelativeForce(transform.right * Input.GetAxis("Horizontal") * ghostmoveForce * Time.fixedDeltaTime, ForceMode2D.Force);
             GFX.transform.localScale = new Vector3(Input.GetAxis("Horizontal") / Mathf.Abs(Input.GetAxis("Horizontal")), 1, 1);
         }
         else
@@ -74,7 +76,7 @@ public class GhostMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.W) && !powerShot || Input.GetKey(KeyCode.Space) && !powerShot)
         {
             myRB.gravityScale = 0;
-            myRB.AddRelativeForce(transform.up * 400.0f * Time.fixedDeltaTime, ForceMode2D.Force);
+            myRB.AddRelativeForce(transform.up * ghostmoveForce * Time.fixedDeltaTime, ForceMode2D.Force);
             ChangeGhostlyPower(floatCost);
         }
 
@@ -85,29 +87,32 @@ public class GhostMove : MonoBehaviour {
             myRB.gravityScale = 1;
         }
 
-
-        if (Input.GetMouseButton(0) && !powerShot) {
-            windLeavesChargeParticles.SetActive(true);
-            ParticleSystem.MainModule m = windLeavesChargeParticles.GetComponent<ParticleSystem>().main;
-            ParticleSystem.EmissionModule e = windLeavesChargeParticles.GetComponent<ParticleSystem>().emission;
-            e.rateOverTime = (windCharge/2.0f) + 1.0f;
-            windCharge += 0.2f;
-            ChangeGhostlyPower(windCost);
-            doNaturalPowerGen = false;
-        }
-        //if (ghostlyPower < 0.005f)
-        //{
-        //    MouseUp();
-        //}
-
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindCastParticles.transform.position;
-        difference.Normalize();
-        float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        ghostlyWindCastParticles.transform.rotation = Quaternion.Euler(-rotz, 90, 0f);
-        if (Input.GetMouseButtonUp(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            CastLeaves();
-            doNaturalPowerGen = true;
+            if (Input.GetMouseButton(0) && !powerShot)
+            {
+                windLeavesChargeParticles.SetActive(true);
+                ParticleSystem.MainModule m = windLeavesChargeParticles.GetComponent<ParticleSystem>().main;
+                ParticleSystem.EmissionModule e = windLeavesChargeParticles.GetComponent<ParticleSystem>().emission;
+                e.rateOverTime = (windCharge / 2.0f) + 1.0f;
+                windCharge += 0.2f;
+                ChangeGhostlyPower(windCost);
+                doNaturalPowerGen = false;
+            }
+            //if (ghostlyPower < 0.005f)
+            //{
+            //    MouseUp();
+            //}
+
+            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindCastParticles.transform.position;
+            difference.Normalize();
+            float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            ghostlyWindCastParticles.transform.rotation = Quaternion.Euler(-rotz, 90, 0f);
+            if (Input.GetMouseButtonUp(0))
+            {
+                CastLeaves();
+                doNaturalPowerGen = true;
+            }
         }
 
 
@@ -225,19 +230,6 @@ public class GhostMove : MonoBehaviour {
         ghostlyPower = val;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.GetComponent<TipSensorScript>() != null) {
-            col.gameObject.GetComponent<TipSensorScript>().inTrigger = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.GetComponent<TipSensorScript>() != null)
-        {
-            col.gameObject.GetComponent<TipSensorScript>().inTrigger = false;
-        }
-    }
+    
 
 }
