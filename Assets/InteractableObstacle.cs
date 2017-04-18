@@ -13,21 +13,24 @@ public class InteractableObstacle : MonoBehaviour {
 
     void Start()
     {
+        myRB = GetComponent<Rigidbody2D>();
         curs = GameObject.FindGameObjectWithTag("Cursor").transform;
-        moveToPos.GetComponent<SpriteRenderer>().enabled = false;
+        if (moveToPos)
+        {
+            moveToPos.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
-    public void Activate(GameObject other)
+    public void Activate()
     {
         if (usePhysics)
         {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            if (!rb)
+            if (myRB && myRB.isKinematic == true)
             {
-                myRB = gameObject.AddComponent<Rigidbody2D>();
+                myRB.isKinematic = false;
             }
 
-            myRB.AddForce((curs.position - transform.position).normalized *  0.5f, ForceMode2D.Impulse);
+            myRB.AddForce((curs.position - transform.position).normalized * moveRate/4, ForceMode2D.Impulse);
             
                 
         }
@@ -55,7 +58,7 @@ public class InteractableObstacle : MonoBehaviour {
             durability = durability - 1;
             if (durability <= 0)
             {
-                Activate(other);
+                Activate();
             }
         }
     }

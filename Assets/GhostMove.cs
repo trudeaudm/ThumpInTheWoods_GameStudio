@@ -54,8 +54,8 @@ public class GhostMove : MonoBehaviour {
             speechBubble.SetActive(true);
             speechBubble.GetComponentInChildren<TextMesh>().text = "Congratulations! You have found the last artifact!";
         }*/
-        if (transform.position.y <= -16) {
-            ReloadScene();
+        if (transform.position.y <= -100) {
+            RcP.WakeAtLastPosition();
         }
 
         //Movement controls
