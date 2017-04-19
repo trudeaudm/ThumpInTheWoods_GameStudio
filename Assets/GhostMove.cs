@@ -21,7 +21,7 @@ public class GhostMove : MonoBehaviour {
     public float powerGenRate;
     private bool doNaturalPowerGen = true; // if this is false it will stop natural power generation for the ghost
     private bool powerShot; //if this is true the ghost needs to recover some power before abilities work.
-    private float camVertOffset = 4.0f;
+    private float camVertOffset = 3.0f;
     [SerializeField]private GameObject GFX;
     private Text speechBubbleTextMain;
     private GameObject speechBubbleTextParent;
