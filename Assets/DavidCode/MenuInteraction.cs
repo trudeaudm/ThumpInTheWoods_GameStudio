@@ -67,19 +67,14 @@ public class MenuInteraction : MonoBehaviour {
         }
     }
     private IEnumerator OpenEffect()
-    {
-        
+    {      
             while (objectToMove.rotation != activePosition.rotation || objectToMove.position != activePosition.position)
             {
             objectToMove.position = Vector2.Lerp(objectToMove.position, activePosition.position, moveRate);
                 objectToMove.rotation = Quaternion.Lerp(objectToMove.rotation, activePosition.rotation, moveRate);
                 yield return null;
             }
-        
-
-
     }
-
     private IEnumerator CloseEffect()
     {
 
@@ -90,10 +85,7 @@ public class MenuInteraction : MonoBehaviour {
                 objectToMove.rotation = Quaternion.Lerp(objectToMove.rotation, restPostion.rotation, moveRate);
                 yield return null;
             }
-
- 
-    }
-    
+    } 
     public void Open()
     {
         coroutineOpen = OpenEffect();

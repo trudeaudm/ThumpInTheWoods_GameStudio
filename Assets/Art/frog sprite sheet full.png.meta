@@ -1,0 +1,327 @@
+fileFormatVersion: 2
+guid: 0acbfde962537f745a543df6cc55cc56
+timeCreated: 1492632978
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: frog sprite sheet full_0
+    21300002: frog sprite sheet full_1
+    21300004: frog sprite sheet full_2
+    21300006: frog sprite sheet full_3
+    21300008: frog sprite sheet full_4
+    21300010: frog sprite sheet full_5
+    21300012: frog sprite sheet full_6
+    21300014: frog sprite sheet full_7
+    21300016: frog sprite sheet full_8
+    21300018: frog sprite sheet full_9
+    21300020: frog sprite sheet full_10
+    21300022: frog sprite sheet full_11
+    21300024: frog sprite sheet full_12
+    21300026: frog sprite sheet full_13
+    21300028: frog sprite sheet full_14
+    21300030: frog sprite sheet full_15
+    21300032: frog sprite sheet full_16
+    21300034: frog sprite sheet full_17
+    21300036: frog sprite sheet full_18
+    21300038: frog sprite sheet full_19
+    21300040: frog sprite sheet full_20
+    21300042: frog sprite sheet full_21
+    21300044: frog sprite sheet full_22
+    21300046: frog sprite sheet full_23
+    21300048: frog sprite sheet full_24
+    21300050: frog sprite sheet full_25
+    21300052: frog sprite sheet full_26
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: frog sprite sheet full_0
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 1930
+        width: 435
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_2
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1930
+        width: 444
+        height: 369
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_3
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 1930
+        width: 442
+        height: 374
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_4
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 1930
+        width: 440
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_5
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1369
+        width: 436
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_6
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 1369
+        width: 436
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_7
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 1369
+        width: 436
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_8
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 1369
+        width: 436
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_10
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 887
+        width: 443
+        height: 391
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_11
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 887
+        width: 436
+        height: 391
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_13
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 887
+        width: 437
+        height: 391
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_14
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 887
+        width: 441
+        height: 391
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_19
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 483
+        width: 436
+        height: 387
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_21
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 493
+        width: 439
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_23
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 483
+        width: 442
+        height: 375
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: frog sprite sheet full_24
+      rect:
+        serializedVersion: 2
+        x: 1509
+        y: 483
+        width: 445
+        height: 370
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

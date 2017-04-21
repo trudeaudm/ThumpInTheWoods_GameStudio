@@ -50,10 +50,6 @@ public class GhostMove : MonoBehaviour {
         //keep the ghostly power amount organized
         ManageGhostlyPower();
 
-        /*if (FindObjectOfType<ArtifactScript>() == null) {
-            speechBubble.SetActive(true);
-            speechBubble.GetComponentInChildren<TextMesh>().text = "Congratulations! You have found the last artifact!";
-        }*/
         if (transform.position.y <= -100) {
             RcP.WakeAtLastPosition();
         }
@@ -99,10 +95,6 @@ public class GhostMove : MonoBehaviour {
                 ChangeGhostlyPower(windCost);
                 doNaturalPowerGen = false;
             }
-            //if (ghostlyPower < 0.005f)
-            //{
-            //    MouseUp();
-            //}
 
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindCastParticles.transform.position;
             difference.Normalize();
