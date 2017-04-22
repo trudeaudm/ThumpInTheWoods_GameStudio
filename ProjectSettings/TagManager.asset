@@ -9,6 +9,8 @@ TagManager:
   - Wet
   - Cursor
   - Wind
+  - CreatureAI
+  - FadeOut
   layers:
   - Default
   - TransparentFX
@@ -24,8 +26,8 @@ TagManager:
   - Info
   - ObstacleInteract
   - Tips
-  - 
-  - 
+  - AITrigger
+  - Firefly
   - 
   - 
   - 

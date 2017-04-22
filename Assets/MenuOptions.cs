@@ -17,8 +17,13 @@ public class MenuOptions : MonoBehaviour {
     {
         Application.Quit();
     }
+    public void ViewCredits()
+    {
+        Application.LoadLevel("Credits");
+    }
     public void QuitToMain()
     {
+        ResumeTimeImmediate();
         Application.LoadLevel("StartMenu");
     }
     public void StopTime()
@@ -36,6 +41,10 @@ public class MenuOptions : MonoBehaviour {
             StopCoroutine(timeChange);
         }
         timeChange = StartCoroutine(ChangeTime(1.0f));
+    }
+    public void ResumeTimeImmediate()
+    {
+        Time.timeScale = 1.0f;
     }
     IEnumerator ChangeTime(float newVal)
     {

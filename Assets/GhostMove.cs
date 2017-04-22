@@ -9,7 +9,7 @@ public class GhostMove : MonoBehaviour {
 
     private int spookAmt;
     private float windCharge;
-    public GameObject windLeavesChargeParticles, ghostlyWindCastParticles, speechBubble;
+    public GameObject windLeavesChargeParticles, ghostlyWindCastParticles, speechBubbleText;
     private Image ghostlyPowerBar;
     [SerializeField] private Transform hatPos, shirtPos;
     [SerializeField] private Sprite meSprite, walkingSprite;
@@ -21,7 +21,7 @@ public class GhostMove : MonoBehaviour {
     public float powerGenRate;
     private bool doNaturalPowerGen = true; // if this is false it will stop natural power generation for the ghost
     private bool powerShot; //if this is true the ghost needs to recover some power before abilities work.
-    private float camVertOffset = 3.0f;
+    private float camVertOffset = 3.5f;
     [SerializeField]private GameObject GFX;
     private Text speechBubbleTextMain;
     private GameObject speechBubbleTextParent;
@@ -30,8 +30,8 @@ public class GhostMove : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         RcP = GetComponent<RecallPosition>();
-        speechBubbleTextMain = GameObject.FindGameObjectWithTag("SpeechBubbleText").GetComponent<Text>();
-        speechBubbleTextParent = speechBubbleTextMain.transform.parent.gameObject;
+        speechBubbleTextMain = speechBubbleText.GetComponent<Text>();
+        speechBubbleTextParent = speechBubbleText.transform.parent.gameObject;
         speechBubbleTextParent.SetActive(false);
         ghostlyPowerBar = GameObject.Find("PowerBarSliderFill").GetComponent<Image>();
         myRB = GetComponent<Rigidbody2D>();

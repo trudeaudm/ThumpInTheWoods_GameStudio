@@ -9,7 +9,8 @@ public class FishScript : MonoBehaviour {
     public Sprite[] sprites;
     int[] indeces = { 0, 1, 2, 3, 4, 3, 2, 1, 0, 5, 6, 7, 8, 7, 6, 5 };
     int indexofindeces = 0;
-    float timer;
+    public float delay;
+    private float timer;
     bool forward;
 
     // Use this for initialization
@@ -19,7 +20,7 @@ public class FishScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         GetComponent<SpriteRenderer>().sprite = sprites[indeces[indexofindeces]];
         indexofindeces = (indexofindeces + 1) % indeces.Length;
         if (timer <= 1)
@@ -39,8 +40,8 @@ public class FishScript : MonoBehaviour {
                 transform.position = Vector3.Lerp(endpoint, startpoint, timer) + Vector3.up * height;
             }
         }
-        timer += Time.deltaTime;
-        if (timer > 2)
+        timer += Time.fixedDeltaTime;
+        if (timer > delay)
         {
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             forward = !forward;

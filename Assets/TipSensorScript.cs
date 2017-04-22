@@ -14,9 +14,10 @@ public class TipSensorScript : MonoBehaviour {
     public GameObject indicatorOb;
     public float indicatorBlinkRate;
     private bool messageOn;
+    private GhostMove myGhost;
     // Use this for initialization
-    void Awake() {
-        bubble = GameObject.FindGameObjectWithTag("SpeechBubbleText");
+    void Start() {
+        myGhost = FindObjectOfType<GhostMove>();
         if (indicatorOb)
         {
             indicatorOb.SetActive(false);
@@ -33,9 +34,8 @@ public class TipSensorScript : MonoBehaviour {
         {
             StartCoroutine(BlinkIndicator());
         }
-    
-        bubble.transform.parent.gameObject.SetActive(true);
-        bubble.GetComponent<Text>().text = tip;
+        myGhost.GetSpeechBubbleParent().gameObject.SetActive(true);
+        myGhost.GetSpeechBubbleText().GetComponent<Text>().text = tip;
     }
     void EndMessage(){
         messageOn = false;

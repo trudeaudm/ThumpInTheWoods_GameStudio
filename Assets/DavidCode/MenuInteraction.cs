@@ -61,10 +61,6 @@ public class MenuInteraction : MonoBehaviour {
         {
             StartGame();
         }
-        else
-        {
-            QuitGame();
-        }
     }
     private IEnumerator OpenEffect()
     {      

@@ -221,7 +221,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 37dcb443b5b61544590a2dfd6e21e29c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -315,7 +315,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -420,7 +420,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2128981448
+  randomSeed: 615067406
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2973,7 +2973,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -62171392
+  randomSeed: 193519053
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5574,7 +5574,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1902969089
+  randomSeed: 1792059610
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7768,7 +7768,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294964953
+      m_Bits: 4294940377
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
