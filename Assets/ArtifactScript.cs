@@ -8,6 +8,15 @@ public class ArtifactScript : MonoBehaviour {
     public bool loadCredits;
     private Image fadeOut;
     private Color FadeToColor = new Color(0, 0, 0, 0);
+    private SpriteRenderer mySprite;
+    void Start()
+    {
+        mySprite = GetComponent<SpriteRenderer>();
+        if (mySprite == null)
+        {
+           mySprite = GetComponentInChildren<SpriteRenderer>();
+        }
+    }
     public void OnCollisionEnter2D(Collision2D col)
     {
         GhostMove GM = col.gameObject.GetComponent<GhostMove>();
@@ -17,15 +26,12 @@ public class ArtifactScript : MonoBehaviour {
             GetComponent<Collider2D>().enabled = false;
             transform.position = GM.GetObjectPos(itemType).position;
             transform.rotation = GM.GetObjectPos(itemType).rotation;
+            mySprite.sortingOrder = 6;
             transform.parent = GM.GetObjectPos(itemType);
-            SpriteRenderer SR = GetComponent<SpriteRenderer>();
-            if (SR == null)
-            {
-                SR = GetComponentInChildren<SpriteRenderer>();
-            }
-            Color transColor = SR.color;
+
+            Color transColor = mySprite.color;
             transColor.a = 0.5f;
-            SR.color = transColor;
+            mySprite.color = transColor;
             if (!loadCredits)
             {
                 Destroy(this);

@@ -98,8 +98,8 @@ public class GhostMove : MonoBehaviour {
 
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - ghostlyWindCastParticles.transform.position;
             difference.Normalize();
-            float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            ghostlyWindCastParticles.transform.rotation = Quaternion.Euler(-rotz, 90, 0f);
+            float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 22.5f;
+            ghostlyWindCastParticles.transform.rotation = Quaternion.Euler(0, 0, rotz);
             if (Input.GetMouseButtonUp(0))
             {
                 CastLeaves();
