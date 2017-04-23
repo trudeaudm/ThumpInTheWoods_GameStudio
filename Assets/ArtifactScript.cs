@@ -9,8 +9,11 @@ public class ArtifactScript : MonoBehaviour {
     private Image fadeOut;
     private Color FadeToColor = new Color(0, 0, 0, 0);
     private SpriteRenderer mySprite;
+    [SerializeField]
+    private ArtifactUIScript ui;
     void Start()
     {
+        ui.isGotten = false;
         mySprite = GetComponent<SpriteRenderer>();
         if (mySprite == null)
         {
@@ -22,6 +25,8 @@ public class ArtifactScript : MonoBehaviour {
         GhostMove GM = col.gameObject.GetComponent<GhostMove>();
         if (GM != null)
         {
+            ui.isGotten = true;
+            ui.gameObject.SetActive(true);
             GetComponent<Rigidbody2D>().simulated = false;
             GetComponent<Collider2D>().enabled = false;
             transform.position = GM.GetObjectPos(itemType).position;
