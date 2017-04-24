@@ -10,7 +10,7 @@ public class ArtifactScript : MonoBehaviour {
     private Color FadeToColor = new Color(0, 0, 0, 0);
     private SpriteRenderer mySprite;
     [SerializeField]
-    private ArtifactUIScript ui;
+    public ArtifactUIScript ui;
     [SerializeField] Sprite mitten1, mitten2;
     void Start()
     {
@@ -41,6 +41,7 @@ public class ArtifactScript : MonoBehaviour {
                 transform.position = GM.GetObjectPos(itemType).position;
                 transform.rotation = GM.GetObjectPos(itemType).rotation;
                 GameObject clone = Instantiate(gameObject, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+                Destroy(clone.GetComponent<ArtifactScript>());
                 clone.transform.parent = GM.GetObjectPos(itemType);
             }
             mySprite.sortingOrder = 6;
