@@ -46,14 +46,8 @@ public class GhostMove : MonoBehaviour {
         return speechBubbleTextParent;
     }
 	// Update is called once per frame
-	void Update () {
-        //keep the ghostly power amount organized
-        ManageGhostlyPower();
-
-        if (transform.position.y <= -100) {
-            RcP.WakeAtLastPosition();
-        }
-
+    void FixedUpdate()
+    {
         //Movement controls
         if (Input.GetAxis("Horizontal") != 0)
         {
@@ -67,20 +61,25 @@ public class GhostMove : MonoBehaviour {
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, new Vector3(transform.position.x, transform.position.y + camVertOffset, -10), 0.75f * Time.fixedDeltaTime);
             myAnim.SetBool("Walking", false);
         }
-
-
         if (Input.GetKey(KeyCode.W) && !powerShot || Input.GetKey(KeyCode.Space) && !powerShot)
         {
             myRB.gravityScale = 0;
             myRB.AddRelativeForce(transform.up * ghostmoveForce * Time.fixedDeltaTime, ForceMode2D.Force);
             ChangeGhostlyPower(floatCost);
         }
-
-
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.Space))
         {
             doNaturalPowerGen = true;
             myRB.gravityScale = 1;
+        }
+
+    }
+	void Update () {
+        //keep the ghostly power amount organized
+        ManageGhostlyPower();
+
+        if (transform.position.y <= -100) {
+            RcP.WakeAtLastPosition();
         }
 
         if (!EventSystem.current.IsPointerOverGameObject())
