@@ -11,7 +11,7 @@ public class GhostMove : MonoBehaviour {
     private float windCharge;
     public GameObject windLeavesChargeParticles, ghostlyWindCastParticles, speechBubbleText;
     private Image ghostlyPowerBar;
-    [SerializeField] private Transform hatPos, shirtPos;
+    [SerializeField] private Transform hatPos, shirtPos, mittenpos, glassespos;
     [SerializeField] private Sprite meSprite, walkingSprite;
     [SerializeField] private SpriteRenderer myRend;
     [SerializeField] private Animator myAnim;
@@ -161,6 +161,14 @@ public class GhostMove : MonoBehaviour {
         else if (pos == 2)
         {
             return shirtPos;
+        }
+        else if (pos == 3)
+        {
+            return mittenpos;
+        }
+        else if (pos == 4)
+        {
+            return glassespos;
         }
         else
         {

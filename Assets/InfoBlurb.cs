@@ -26,4 +26,13 @@ public class InfoBlurb : MonoBehaviour {
     {
         speechParent.gameObject.SetActive(false);
     }
+    public void ArtifactUIOver(string text)
+    {
+        speechParent.gameObject.SetActive(true);
+        speechBub.text = text;
+    }
+    public void ArtifactExit()
+    {
+        speechParent.gameObject.SetActive(false);
+    }
 }

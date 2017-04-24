@@ -11,6 +11,7 @@ public class ArtifactScript : MonoBehaviour {
     private SpriteRenderer mySprite;
     [SerializeField]
     private ArtifactUIScript ui;
+    [SerializeField] Sprite mitten1, mitten2;
     void Start()
     {
         ui.isGotten = false;
@@ -29,8 +30,19 @@ public class ArtifactScript : MonoBehaviour {
             ui.gameObject.SetActive(true);
             GetComponent<Rigidbody2D>().simulated = false;
             GetComponent<Collider2D>().enabled = false;
-            transform.position = GM.GetObjectPos(itemType).position;
-            transform.rotation = GM.GetObjectPos(itemType).rotation;
+            if (gameObject.name != "Mittens")
+            {
+                transform.position = GM.GetObjectPos(itemType).position;
+                transform.rotation = GM.GetObjectPos(itemType).rotation;
+            }
+            else
+            {
+                mySprite.sprite = mitten1;
+                transform.position = GM.GetObjectPos(itemType).position;
+                transform.rotation = GM.GetObjectPos(itemType).rotation;
+                GameObject clone = Instantiate(gameObject, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+                clone.transform.parent = GM.GetObjectPos(itemType);
+            }
             mySprite.sortingOrder = 6;
             transform.parent = GM.GetObjectPos(itemType);
 
